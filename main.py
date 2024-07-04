@@ -52,7 +52,7 @@ async def _respond(query: str, text: str) -> str:
 
   Search Query: {query}
 
-  Sources:
+  Context:
 
   {text}
 

@@ -84,7 +84,6 @@ async def get_articles() -> pd.DataFrame:
   links = await _get_links(url)
   p = r'^https://thelastpsychiatrist\.com/\d{4}/\d{2}/[a-zA-Z0-9_]+\.html$'
   links = [x for x in links if re.match(p, x.url)]
-  # filter
   tasks = [_get_article(x) for x in links]
   articles = [x for x in await asyncio.gather(*tasks) if x is not None]
   df = pd.DataFrame([{'title': x.title, 'text': x.text} for x in articles])

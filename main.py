@@ -14,8 +14,6 @@ embedding_model = SentenceTransformer('multi-qa-mpnet-base-cos-v1')
 def _chunk(row: pd.Series):
   dat = row['text'].split('\n')
   dat = [x for x in dat if len(x.split()) >= 5]
-  blacklist = ['@', '|', '©', 'Subscribe to this blog', 'Movable Type']
-  dat = [x for x in dat if all(v not in x for v in blacklist)]
   dat = ['\n'.join(dat[i:i+3]) for i in range(0, len(dat), 3)]
   return pd.DataFrame({
     'title': row['title'],
